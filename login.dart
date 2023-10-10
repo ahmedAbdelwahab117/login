@@ -3,13 +3,12 @@ import 'package:task000/home_screen.dart';
 
 class LoginApp extends StatefulWidget {
   const LoginApp({super.key});
-
   @override
   State<LoginApp> createState() => _LoginAppState();
 }
 
-String? email0;
-String? password0;
+var namecontrolart = TextEditingController();
+var passwordcontrolar = TextEditingController();
 
 class _LoginAppState extends State<LoginApp> {
   // const loginApp({super.key});
@@ -34,12 +33,12 @@ class _LoginAppState extends State<LoginApp> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
+                    controller: namecontrolart,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "username is null";
                       }
                     },
-                    onFieldSubmitted: (email) => (email0 = email),
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: 'Email or Username',
@@ -49,7 +48,7 @@ class _LoginAppState extends State<LoginApp> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
-                    onFieldSubmitted: (password) => {password0 = password},
+                    controller: passwordcontrolar,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -84,8 +83,8 @@ class _LoginAppState extends State<LoginApp> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => App01(
-                                            eMail: email0!,
-                                            password: password0!,
+                                            eMail: passwordcontrolar.text,
+                                            password: passwordcontrolar.text,
                                           )));
                             }
                           },
